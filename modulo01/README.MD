@@ -1,0 +1,1 @@
+# Módulo 1 - Introdução à Ciência da Computação: Algoritmos e Estrutura de Dados
