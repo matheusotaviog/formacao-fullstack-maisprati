@@ -77,8 +77,69 @@
 
 /*4. Crie um objeto onde cada chave é o nome de um item e o valor é a quantidade no inventário do jogador (ex: { espada: 1, poção: 5, escudo: 2 }). Use for...in para listar o inventário completo. Permita que o usuário informe um item para usar: reduza a quantidade em 1 ou exiba "item esgotado" se for zero.*/
 
+// const PROMPT = require('prompt-sync')()
+
+// let inventario = {
+//     espada: 1,
+//     pocao: 5,
+//     escudo: 2,
+//     cajado: 0
+// }
+
+// for (const item in inventario) {
+//     console.log(item + ': ' + inventario[item])
+// }
+
+
+// let opcao = ''
+
+// while (opcao !== '0') {
+//     opcao = PROMPT('Digite o nome do item que deseja usar (0 para sair): ')
+//     console.log('\n\n')
+//     for (const item in inventario) {
+//         if (item === opcao) {
+//             if (inventario[item] > 0) {
+//                 inventario[item] -= 1
+//                 console.log('[Você usou um ' + item + '. Quantidade restante]: ' + inventario[item])
+//             } else {
+//                 console.log('[Item esgotado]: ' + item)
+//             }
+//         }
+//         console.log(item + ': ' + inventario[item])
+//     }
+// }
 
 /*5. Crie um objeto representando o orçamento mensal de uma pessoa, com categorias como alimentação, transporte, lazer e saúde, cada uma com valor planejado e valor gasto. Use for...in para percorrer as categorias e exibir se cada uma ficou dentro ou acima do orçamento, e calcule o saldo geral do mês.*/
+
+class Meta {
+    constructor(planejado, gasto) {
+        this.planejado = planejado
+        this.gasto = gasto
+    }
+}
+
+let orcamentoMensal = {
+    alimentacao: new Meta(1500, 1200),
+    transporte: new Meta(500, 600),
+    lazer: new Meta(250, 300),
+    saude: new Meta(500, 450)
+}
+
+let saldoGeralMes = 0
+
+for (const categoria in orcamentoMensal) {
+    let meta = orcamentoMensal[categoria]
+    let saldoCategoria = meta.planejado - meta.gasto
+    saldoGeralMes += saldoCategoria
+
+    if (saldoCategoria >= 0) {
+        console.log(categoria + ': Dentro do orçamento. Saldo: R$ ' + saldoCategoria.toFixed(2))
+    } else {
+        console.log(categoria + ': Acima do orçamento. Saldo: R$ ' + saldoCategoria.toFixed(2))
+    }
+}
+
+console.log('\nSaldo geral do mês: R$ ' + saldoGeralMes.toFixed(2))
 
 /*6. Crie um array de objetos representando músicas, cada uma com título, artista e duração em segundos. Use for...of para exibir cada música no formato "Artista — Título (mm:ss)". Ao final, use forEach para somar a duração total e exiba-a no mesmo formato.*/
 
