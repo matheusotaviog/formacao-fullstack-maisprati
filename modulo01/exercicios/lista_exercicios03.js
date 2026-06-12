@@ -176,26 +176,76 @@
 
 /*7. Crie um array de objetos com nome e nota de 6 alunos. Use for...of para classificar cada aluno (Aprovado, Recuperação ou Reprovado) e exibir o resultado. Use forEach para calcular e exibir separadamente a média dos aprovados e a média dos reprovados.*/
 
-class Aluno {
-    constructor(nome, nota) {
+// class Aluno {
+//     constructor(nome, nota) {
+//         this.nome = nome,
+//         this.nota = nota
+//     }
+// }
+
+// let arrayAlunos = []
+
+// aluno1 = new Aluno('Matheus', 9.9); arrayAlunos.push(aluno1)
+// aluno2 = new Aluno('Cecília', 10.0); arrayAlunos.push(aluno2)
+// aluno3 = new Aluno('Carlos', 7.9); arrayAlunos.push(aluno3)
+// aluno4 = new Aluno('Roberta', 5.9); arrayAlunos.push(aluno4)
+// aluno5 = new Aluno('Vinícius', 4.4); arrayAlunos.push(aluno5)
+// aluno6 = new Aluno('Alice', 5.3); arrayAlunos.push(aluno6)
+
+// let qtdAprovados = 0
+// let qtdReprovados = 0
+// let notaAprovados = 0.0
+// let notaReprovados = 0.0
+
+// for (const aluno of arrayAlunos) {
+
+//     let mensagem = ''
+//     if (aluno.nota < 5) {
+//         mensagem = 'reprovado'
+//         qtdReprovados += 1
+//         notaReprovados += aluno.nota
+//     } else if (aluno.nota >= 5 && aluno.nota < 6) {
+//         mensagem = 'recuperação'
+//     } else {
+//         mensagem = 'aprovado'
+//         qtdAprovados += 1
+//         notaAprovados += aluno.nota
+//     }
+
+//     console.log(`Situação do aluno ${aluno.nome}: ${mensagem} | Nota: ${aluno.nota.toFixed(1)}`)
+// }
+
+// let mediaAprovados = qtdAprovados > 0 ? (notaAprovados / qtdAprovados).toFixed(2) : 0;
+// let mediaReprovados = qtdReprovados > 0 ? (notaReprovados / qtdReprovados).toFixed(2) : 0;
+
+// console.log('\nQuantidade de aluno aprovados:', qtdAprovados, '\nMédia dos alunos aprovados:', mediaAprovados)
+// console.log('\n\nQuantidade de aluno reprovados:', qtdReprovados, '\nMédia dos alunos reprovados:', mediaReprovados)
+
+/*8. Crie um array de objetos representando produtos com nome, preço e quantidade. Use forEach para calcular o valor total em estoque de cada produto (preço × quantidade) e exibir um relatório. Ao final, exiba o valor total geral de todo o estoque.*/
+
+class Produto {
+    constructor(nome, preco, quantidade) {
         this.nome = nome,
-        this.nota = nota
+        this.preco = preco,
+        this.quantidade = quantidade
     }
 }
 
-let arrayAlunos = []
+let arrayProdutos = [
+    new Produto('Camiseta', 59.90, 98),
+    new Produto('Calça Jeans', 120.00, 50),
+    new Produto('Tênis', 200.00, 30),
+    new Produto('Jaqueta', 150.00, 20)
+]
 
-aluno1 = new Aluno('Matheus', 9.9); arrayAlunos.push(aluno1)
-aluno2 = new Aluno('Cecília', 10.0); arrayAlunos.push(aluno2)
-aluno3 = new Aluno('Carlos', 7.9); arrayAlunos.push(aluno3)
-aluno4 = new Aluno('Roberta', 5.9); arrayAlunos.push(aluno4)
-aluno5 = new Aluno('Vinícius', 4.4); arrayAlunos.push(aluno5)
-aluno6 = new Aluno('Alice', 6.0); arrayAlunos.push(aluno6)
+let valorTotalGeralEstoque = 0
+for (const produto of arrayProdutos) {
+    let valorTotalProduto = produto.preco * produto.quantidade
+    valorTotalGeralEstoque += valorTotalProduto
+    console.log(`Produto: ${produto.nome} | Preço: R$ ${produto.preco.toFixed(2)} | Quantidade: ${produto.quantidade} | Valor Total em Estoque: R$ ${valorTotalProduto.toFixed(2)}`)
+}
+console.log(`Valor Total Geral em Estoque: R$ ${valorTotalGeralEstoque.toFixed(2)}`)
 
-let qtdAprovados, qtdReprovados = 0
-let mediaAprovados, mediaReprovados = 0.0
-
-/*8. Crie um array de objetos representando produtos com nome, preço e quantidade. Use forEach para calcular o valor total em estoque de cada produto (preço × quantidade) e exibir um relatório. Ao final, exiba o valor total geral de todo o estoque.*/
 
 /*9. Crie um array de objetos onde cada objeto representa um contato com nome, telefone e e-mail. Use forEach para listar todos os contatos formatados. Permita buscar um contato pelo nome usando for...of e exiba os dados encontrados ou uma mensagem de "não encontrado".*/
 
