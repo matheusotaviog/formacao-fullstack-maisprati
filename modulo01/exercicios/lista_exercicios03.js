@@ -223,31 +223,70 @@
 
 /*8. Crie um array de objetos representando produtos com nome, preço e quantidade. Use forEach para calcular o valor total em estoque de cada produto (preço × quantidade) e exibir um relatório. Ao final, exiba o valor total geral de todo o estoque.*/
 
-class Produto {
-    constructor(nome, preco, quantidade) {
-        this.nome = nome,
-        this.preco = preco,
-        this.quantidade = quantidade
-    }
-}
+// class Produto {
+//     constructor(nome, preco, quantidade) {
+//         this.nome = nome,
+//         this.preco = preco,
+//         this.quantidade = quantidade
+//     }
+// }
 
-let arrayProdutos = [
-    new Produto('Camiseta', 59.90, 98),
-    new Produto('Calça Jeans', 120.00, 50),
-    new Produto('Tênis', 200.00, 30),
-    new Produto('Jaqueta', 150.00, 20)
-]
+// let arrayProdutos = [
+//     new Produto('Camiseta', 59.90, 98),
+//     new Produto('Calça Jeans', 120.00, 50),
+//     new Produto('Tênis', 200.00, 30),
+//     new Produto('Jaqueta', 150.00, 20)
+// ]
 
-let valorTotalGeralEstoque = 0
-for (const produto of arrayProdutos) {
-    let valorTotalProduto = produto.preco * produto.quantidade
-    valorTotalGeralEstoque += valorTotalProduto
-    console.log(`Produto: ${produto.nome} | Preço: R$ ${produto.preco.toFixed(2)} | Quantidade: ${produto.quantidade} | Valor Total em Estoque: R$ ${valorTotalProduto.toFixed(2)}`)
-}
-console.log(`Valor Total Geral em Estoque: R$ ${valorTotalGeralEstoque.toFixed(2)}`)
+// let valorTotalGeralEstoque = 0
+// for (const produto of arrayProdutos) {
+//     let valorTotalProduto = produto.preco * produto.quantidade
+//     valorTotalGeralEstoque += valorTotalProduto
+//     console.log(`Produto: ${produto.nome} | Preço: R$ ${produto.preco.toFixed(2)} | Quantidade: ${produto.quantidade} | Valor Total em Estoque: R$ ${valorTotalProduto.toFixed(2)}`)
+// }
+// console.log(`Valor Total Geral em Estoque: R$ ${valorTotalGeralEstoque.toFixed(2)}`)
 
 
 /*9. Crie um array de objetos onde cada objeto representa um contato com nome, telefone e e-mail. Use forEach para listar todos os contatos formatados. Permita buscar um contato pelo nome usando for...of e exiba os dados encontrados ou uma mensagem de "não encontrado".*/
+
+class Contato {
+    constructor(nome, telefone, email) {
+        this.nome = nome,
+        this.telefone = telefone,
+        this.email = email
+    }
+}
+
+let arrayContatos = [
+    new Contato('Matheus', '16992384129', 'matheus@gmail.com'),
+    new Contato('Cecília', '16992834928', 'cecilia@gmail.com'),
+    new Contato('Carlos', '16992384756', 'carlos.silva@outlook.com'),
+    new Contato('Roberta', '16992384756', 'Roberta@hotmail.com'),
+    new Contato('Matheus', '16992833823', 'matheus2@outlook.com')
+]
+
+arrayContatos.forEach(contato => {
+    console.log(`Nome: ${contato.nome} | Telefone: ${contato.telefone} | Email: ${contato.email}`)
+})
+
+const PROMPT = require('prompt-sync')()
+let contatoEncontrado = false
+let nomeBusca = ''
+
+while (nomeBusca !== '0') {
+    nomeBusca = PROMPT('Digite o nome do contato que deseja buscar (0 para sair): ')
+    if (nomeBusca !== '0') console.log('\n\nBuscando...')
+    contatoEncontrado = false
+    arrayContatos.forEach(contato => {
+        if (contato.nome.toLowerCase() === nomeBusca.toLowerCase()) {
+            console.log(`Contato encontrado: Nome: ${contato.nome} | Telefone: ${contato.telefone} | Email: ${contato.email}`)
+            contatoEncontrado = true
+        }
+    })
+    if (!contatoEncontrado && nomeBusca !== '0') {
+        console.log('Contato não encontrado.')
+    }
+}
 
 /*10. Implemente uma pilha usando um array para simular o histórico de um navegador. Crie as funções visitar(pagina) (push), voltar() (pop) e paginaAtual() (peek). Simule uma sessão: visite 4 páginas, volte 2 vezes e exiba a página atual a cada operação.*/
 
