@@ -249,47 +249,132 @@
 
 /*9. Crie um array de objetos onde cada objeto representa um contato com nome, telefone e e-mail. Use forEach para listar todos os contatos formatados. Permita buscar um contato pelo nome usando for...of e exiba os dados encontrados ou uma mensagem de "não encontrado".*/
 
-class Contato {
-    constructor(nome, telefone, email) {
-        this.nome = nome,
-        this.telefone = telefone,
-        this.email = email
-    }
-}
+// class Contato {
+//     constructor(nome, telefone, email) {
+//         this.nome = nome,
+//         this.telefone = telefone,
+//         this.email = email
+//     }
+// }
 
-let arrayContatos = [
-    new Contato('Matheus', '16992384129', 'matheus@gmail.com'),
-    new Contato('Cecília', '16992834928', 'cecilia@gmail.com'),
-    new Contato('Carlos', '16992384756', 'carlos.silva@outlook.com'),
-    new Contato('Roberta', '16992384756', 'Roberta@hotmail.com'),
-    new Contato('Matheus', '16992833823', 'matheus2@outlook.com')
-]
+// let arrayContatos = [
+//     new Contato('Matheus', '16992384129', 'matheus@gmail.com'),
+//     new Contato('Cecília', '16992834928', 'cecilia@gmail.com'),
+//     new Contato('Carlos', '16992384756', 'carlos.silva@outlook.com'),
+//     new Contato('Roberta', '16992384756', 'Roberta@hotmail.com'),
+//     new Contato('Matheus', '16992833823', 'matheus2@outlook.com')
+// ]
 
-arrayContatos.forEach(contato => {
-    console.log(`Nome: ${contato.nome} | Telefone: ${contato.telefone} | Email: ${contato.email}`)
-})
+// arrayContatos.forEach(contato => {
+//     console.log(`Nome: ${contato.nome} | Telefone: ${contato.telefone} | Email: ${contato.email}`)
+// })
 
-const PROMPT = require('prompt-sync')()
-let contatoEncontrado = false
-let nomeBusca = ''
+// const PROMPT = require('prompt-sync')()
+// let contatoEncontrado = false
+// let nomeBusca = ''
 
-while (nomeBusca !== '0') {
-    nomeBusca = PROMPT('Digite o nome do contato que deseja buscar (0 para sair): ')
-    if (nomeBusca !== '0') console.log('\n\nBuscando...')
-    contatoEncontrado = false
-    arrayContatos.forEach(contato => {
-        if (contato.nome.toLowerCase() === nomeBusca.toLowerCase()) {
-            console.log(`Contato encontrado: Nome: ${contato.nome} | Telefone: ${contato.telefone} | Email: ${contato.email}`)
-            contatoEncontrado = true
-        }
-    })
-    if (!contatoEncontrado && nomeBusca !== '0') {
-        console.log('Contato não encontrado.')
-    }
-}
+// while (nomeBusca !== '0') {
+//     nomeBusca = PROMPT('Digite o nome do contato que deseja buscar (0 para sair): ')
+//     if (nomeBusca !== '0') console.log('\n\nBuscando...')
+//     contatoEncontrado = false
+//     arrayContatos.forEach(contato => {
+//         if (contato.nome.toLowerCase() === nomeBusca.toLowerCase()) {
+//             console.log(`Contato encontrado: Nome: ${contato.nome} | Telefone: ${contato.telefone} | Email: ${contato.email}`)
+//             contatoEncontrado = true
+//         }
+//     })
+//     if (!contatoEncontrado && nomeBusca !== '0') {
+//         console.log('Contato não encontrado.')
+//     }
+// }
 
 /*10. Implemente uma pilha usando um array para simular o histórico de um navegador. Crie as funções visitar(pagina) (push), voltar() (pop) e paginaAtual() (peek). Simule uma sessão: visite 4 páginas, volte 2 vezes e exiba a página atual a cada operação.*/
+
+class Pagina {
+    constructor(url, previous) {
+        this.url = url,
+        this.previous = previous
+    }
+}
+
+/* No histórico do navegador, ao voltar a página, não perdemos referência da página anterior. Porém, para o exercício e de acordo com enunciado, fiz uma pilha simples */
+class HistoricoNavegador {
+    constructor(head, lenght) {
+        this.head = null,
+        this.lenght = 0
+    }
+
+    visitar(valor) {
+        console.log('\nVisitando página:', valor)
+        let novaPagina = new Pagina(valor, this.head)
+        this.head = novaPagina
+        this.lenght++
+    }
+
+    voltar() {
+        if (!this.head) console.log('\nNenhuma página para voltar.')
+
+        if(this.head) {
+            console.log('\nVoltando da página:', this.head.url)
+            this.head = this.head.previous
+            this.lenght--
+        }
+    }
+
+    paginaAtual() {
+        if (!this.head) console.log('Nenhuma página visitada.')
+        else console.log('Página atual:', this.head.url)
+    }
+}
+
+console.log('Simulando histórico de navegador...')
+let historicoNavegador = new HistoricoNavegador()
+
+historicoNavegador.visitar('https://www.google.com')
+historicoNavegador.paginaAtual()
+
+historicoNavegador.visitar('https://maisprati.com.br/')
+historicoNavegador.paginaAtual()
+
+historicoNavegador.visitar('https://www.youtube.com')
+historicoNavegador.paginaAtual()
+
+historicoNavegador.visitar('https://github.com/matheusotaviog')
+historicoNavegador.paginaAtual()
+
+historicoNavegador.voltar()
+historicoNavegador.paginaAtual()
+
+historicoNavegador.voltar()
+historicoNavegador.paginaAtual()
 
 /*11. Implemente uma fila usando um array para simular o atendimento de uma clínica. Crie as funções chegarPaciente(nome) (enqueue), chamarProximo() (dequeue) e exibirFila(). Simule a chegada de 5 pacientes e o atendimento de 3, exibindo o estado da fila a cada operação.*/
 
 /*12. Implemente uma lista ligada simples usando nós ({ valor, proximo }). Crie as funções adicionar(tarefa), remover(tarefa) e exibir() que percorre todos os nós. Simule um gerenciador de tarefas: adicione 4 tarefas, remova uma pelo nome e exiba a lista antes e depois.*/
+
+class No {
+    constructor(valor, proximo) {
+        this.valor = valor,
+        this.proximo = proximo
+    }
+}
+
+class ListaLigadaSimples {
+    constructor(comeco, tamanho) {
+        this.comeco = null,
+        this.tamanho = 0
+    }
+
+    adicionar(tarefa) {
+
+    }
+
+    remover(tarefa) {
+
+    }
+
+    exibir() {
+
+    }
+
+}
