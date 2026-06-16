@@ -290,63 +290,63 @@
 
 /*10. Implemente uma pilha usando um array para simular o histórico de um navegador. Crie as funções visitar(pagina) (push), voltar() (pop) e paginaAtual() (peek). Simule uma sessão: visite 4 páginas, volte 2 vezes e exiba a página atual a cada operação.*/
 
-class Pagina {
-    constructor(url, previous) {
-        this.url = url,
-        this.previous = previous
-    }
-}
+// class Pagina {
+//     constructor(url, previous) {
+//         this.url = url,
+//         this.previous = previous
+//     }
+// }
 
-/* No histórico do navegador, ao voltar a página, não perdemos referência da página anterior. Porém, para o exercício e de acordo com enunciado, fiz uma pilha simples */
-class HistoricoNavegador {
-    constructor(head, lenght) {
-        this.head = null,
-        this.lenght = 0
-    }
+// /* No histórico do navegador, ao voltar a página, não perdemos referência da página anterior. Porém, para o exercício e de acordo com enunciado, fiz uma pilha simples */
+// class HistoricoNavegador {
+//     constructor(head, lenght) {
+//         this.head = null,
+//         this.lenght = 0
+//     }
 
-    visitar(valor) {
-        console.log('\nVisitando página:', valor)
-        let novaPagina = new Pagina(valor, this.head)
-        this.head = novaPagina
-        this.lenght++
-    }
+//     visitar(valor) {
+//         console.log('\nVisitando página:', valor)
+//         let novaPagina = new Pagina(valor, this.head)
+//         this.head = novaPagina
+//         this.lenght++
+//     }
 
-    voltar() {
-        if (!this.head) console.log('\nNenhuma página para voltar.')
+//     voltar() {
+//         if (!this.head) console.log('\nNenhuma página para voltar.')
 
-        if(this.head) {
-            console.log('\nVoltando da página:', this.head.url)
-            this.head = this.head.previous
-            this.lenght--
-        }
-    }
+//         if(this.head) {
+//             console.log('\nVoltando da página:', this.head.url)
+//             this.head = this.head.previous
+//             this.lenght--
+//         }
+//     }
 
-    paginaAtual() {
-        if (!this.head) console.log('Nenhuma página visitada.')
-        else console.log('Página atual:', this.head.url)
-    }
-}
+//     paginaAtual() {
+//         if (!this.head) console.log('Nenhuma página visitada.')
+//         else console.log('Página atual:', this.head.url)
+//     }
+// }
 
-console.log('Simulando histórico de navegador...')
-let historicoNavegador = new HistoricoNavegador()
+// console.log('Simulando histórico de navegador...')
+// let historicoNavegador = new HistoricoNavegador()
 
-historicoNavegador.visitar('https://www.google.com')
-historicoNavegador.paginaAtual()
+// historicoNavegador.visitar('https://www.google.com')
+// historicoNavegador.paginaAtual()
 
-historicoNavegador.visitar('https://maisprati.com.br/')
-historicoNavegador.paginaAtual()
+// historicoNavegador.visitar('https://maisprati.com.br/')
+// historicoNavegador.paginaAtual()
 
-historicoNavegador.visitar('https://www.youtube.com')
-historicoNavegador.paginaAtual()
+// historicoNavegador.visitar('https://www.youtube.com')
+// historicoNavegador.paginaAtual()
 
-historicoNavegador.visitar('https://github.com/matheusotaviog')
-historicoNavegador.paginaAtual()
+// historicoNavegador.visitar('https://github.com/matheusotaviog')
+// historicoNavegador.paginaAtual()
 
-historicoNavegador.voltar()
-historicoNavegador.paginaAtual()
+// historicoNavegador.voltar()
+// historicoNavegador.paginaAtual()
 
-historicoNavegador.voltar()
-historicoNavegador.paginaAtual()
+// historicoNavegador.voltar()
+// historicoNavegador.paginaAtual()
 
 /*11. Implemente uma fila usando um array para simular o atendimento de uma clínica. Crie as funções chegarPaciente(nome) (enqueue), chamarProximo() (dequeue) e exibirFila(). Simule a chegada de 5 pacientes e o atendimento de 3, exibindo o estado da fila a cada operação.*/
 
@@ -366,7 +366,18 @@ class ListaLigadaSimples {
     }
 
     adicionar(tarefa) {
+        console.log('\nAdicionando nova tarefa: ', tarefa)
+        let novaTarefa = new No(tarefa, null)
+        if(this.comeco === null) return this.comeco = novaTarefa
 
+        let buscar = this.comeco
+        while(buscar.proximo !== null) {
+            buscar = buscar.proximo
+        }
+        let penultimo = buscar
+
+        penultimo.proximo = novaTarefa
+        this.tamanho++
     }
 
     remover(tarefa) {
@@ -374,7 +385,23 @@ class ListaLigadaSimples {
     }
 
     exibir() {
-
+        console.log('\nExibindo lista de tarefas:')
+        let atual = this.comeco
+        while(atual !== null) {
+            console.log('- ', atual.valor)
+            atual = atual.proximo
+        }
     }
 
 }
+
+console.log('Simulando gerenciador de tarefas...')
+let listaTarefas = new ListaLigadaSimples()
+
+listaTarefas.adicionar('Comprar leite')
+listaTarefas.adicionar('Pagar contas')
+listaTarefas.adicionar('Lavar roupa')
+listaTarefas.adicionar('Estudar JavaScript')
+listaTarefas.exibir()
+listaTarefas.adicionar('Fazer exercícios da aula')
+listaTarefas.exibir()
