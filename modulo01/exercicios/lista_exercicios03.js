@@ -350,58 +350,108 @@
 
 /*11. Implemente uma fila usando um array para simular o atendimento de uma clínica. Crie as funções chegarPaciente(nome) (enqueue), chamarProximo() (dequeue) e exibirFila(). Simule a chegada de 5 pacientes e o atendimento de 3, exibindo o estado da fila a cada operação.*/
 
-/*12. Implemente uma lista ligada simples usando nós ({ valor, proximo }). Crie as funções adicionar(tarefa), remover(tarefa) e exibir() que percorre todos os nós. Simule um gerenciador de tarefas: adicione 4 tarefas, remova uma pelo nome e exiba a lista antes e depois.*/
-
-class No {
-    constructor(valor, proximo) {
-        this.valor = valor,
-        this.proximo = proximo
-    }
-}
-
-class ListaLigadaSimples {
-    constructor(comeco, tamanho) {
-        this.comeco = null,
+class Clinica {
+    constructor(fila, tamanho) {
+        this.fila = [],
         this.tamanho = 0
     }
 
-    adicionar(tarefa) {
-        console.log('\nAdicionando nova tarefa: ', tarefa)
-        let novaTarefa = new No(tarefa, null)
-        if(this.comeco === null) return this.comeco = novaTarefa
-
-        let buscar = this.comeco
-        while(buscar.proximo !== null) {
-            buscar = buscar.proximo
-        }
-        let penultimo = buscar
-
-        penultimo.proximo = novaTarefa
+    chegarPaciente(nome) {
+        this.fila.push(nome)
         this.tamanho++
+        console.log('\n Paciente', nome, 'chegou.')
+        this.exibirFila()
     }
 
-    remover(tarefa) {
-
-    }
-
-    exibir() {
-        console.log('\nExibindo lista de tarefas:')
-        let atual = this.comeco
-        while(atual !== null) {
-            console.log('- ', atual.valor)
-            atual = atual.proximo
+    chamarProximo() {
+        if (this.tamanho === 0) {
+            console.log('\nFila vazia.')
+            return
         }
+        let proximoPaciente = this.fila[0]
+        this.fila.shift() //remove o primeiro elemento do array
+        this.tamanho--
+        console.log('\nChamando próximo paciente:', proximoPaciente)
+        this.exibirFila()
     }
 
+    exibirFila() {
+        if (this.tamanho === 0) {
+            console.log('\nFila vazia.')
+            return
+        }
+        console.log('\nFila atual:')
+        this.fila.forEach((paciente, index) => {
+            console.log(`${index + 1} - ${paciente}`)
+        })
+    }
 }
 
-console.log('Simulando gerenciador de tarefas...')
-let listaTarefas = new ListaLigadaSimples()
+const clinica = new Clinica()
 
-listaTarefas.adicionar('Comprar leite')
-listaTarefas.adicionar('Pagar contas')
-listaTarefas.adicionar('Lavar roupa')
-listaTarefas.adicionar('Estudar JavaScript')
-listaTarefas.exibir()
-listaTarefas.adicionar('Fazer exercícios da aula')
-listaTarefas.exibir()
+clinica.chegarPaciente('Matheus')
+clinica.chegarPaciente('Cecília')
+clinica.chegarPaciente('Jonas')
+clinica.chegarPaciente('Claudia')
+clinica.chegarPaciente('Vinícius')
+
+clinica.chamarProximo()
+clinica.chamarProximo()
+clinica.chamarProximo()
+
+
+/*12. Implemente uma lista ligada simples usando nós ({ valor, proximo }). Crie as funções adicionar(tarefa), remover(tarefa) e exibir() que percorre todos os nós. Simule um gerenciador de tarefas: adicione 4 tarefas, remova uma pelo nome e exiba a lista antes e depois.*/
+
+// class No {
+//     constructor(valor, proximo) {
+//         this.valor = valor,
+//         this.proximo = proximo
+//     }
+// }
+
+// class ListaLigadaSimples {
+//     constructor(comeco, tamanho) {
+//         this.comeco = null,
+//         this.tamanho = 0
+//     }
+
+//     adicionar(tarefa) {
+//         console.log('\nAdicionando nova tarefa: ', tarefa)
+//         let novaTarefa = new No(tarefa, null)
+//         if(this.comeco === null) return this.comeco = novaTarefa
+
+//         let buscar = this.comeco
+//         while(buscar.proximo !== null) {
+//             buscar = buscar.proximo
+//         }
+//         let penultimo = buscar
+
+//         penultimo.proximo = novaTarefa
+//         this.tamanho++
+//     }
+
+//     remover(tarefa) {
+
+//     }
+
+//     exibir() {
+//         console.log('\nExibindo lista de tarefas:')
+//         let atual = this.comeco
+//         while(atual !== null) {
+//             console.log('- ', atual.valor)
+//             atual = atual.proximo
+//         }
+//     }
+
+// }
+
+// console.log('Simulando gerenciador de tarefas...')
+// let listaTarefas = new ListaLigadaSimples()
+
+// listaTarefas.adicionar('Comprar leite')
+// listaTarefas.adicionar('Pagar contas')
+// listaTarefas.adicionar('Lavar roupa')
+// listaTarefas.adicionar('Estudar JavaScript')
+// listaTarefas.exibir()
+// listaTarefas.adicionar('Fazer exercícios da aula')
+// listaTarefas.exibir()
