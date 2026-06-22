@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+.cabecalho {
+    background-color: #222;
+    color: aliceblue;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+}
+
+.menu a {
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+    color: rgb(214, 214, 255);
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.produtos {
+    background-color: white;
+    width: 250px;
+    padding: 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.produtos h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.produtos p {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.produtos button {
+    padding: 10px;
+    background-color: #222;
+    color: #f1f1f1;
+    cursor: pointer;
+}
+
+.rodape {
+    background-color: #222;
+    color: #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.rodape p {
+    font-size: 12px;
+}
+
+.redes-sociais {
+    display: flex;
+    gap: 15px;
+}
+
+.redes-sociais img {
+    width: 23px;
+}

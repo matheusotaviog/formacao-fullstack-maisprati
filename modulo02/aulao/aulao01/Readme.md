@@ -1,0 +1,1 @@
+# Aulão referente a 20/06/2026 (Sábado)
