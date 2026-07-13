@@ -1,5 +1,6 @@
 import Header from './components/Header/Header'
 import NewsCard from './components/NewsCard/NewsCard'
+import Footer from './components/Footer/Footer'
 import { noticias } from './data/noticias'
 import './App.css'
 
@@ -31,6 +32,7 @@ function App() {
           ))}
         </section>
       </main>
+      <Footer />
     </>
   )
 }
