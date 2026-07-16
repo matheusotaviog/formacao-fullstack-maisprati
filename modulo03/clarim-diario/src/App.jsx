@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import Header from './components/Header/Header'
 import NewsCard from './components/NewsCard/NewsCard'
 import Footer from './components/Footer/Footer'
@@ -5,11 +6,23 @@ import { noticias } from './data/noticias'
 import './App.css'
 
 function App() {
+  const [tema, setTema] = useState(() => {
+    return localStorage.getItem('tema') || 'light'
+  })
   const [manchete, ...demais] = noticias
+
+  function alterarTema() {
+    setTema(tema => (tema === 'light' ? 'dark' : 'light'))
+  }
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', tema)
+    localStorage.setItem('tema', tema)
+  }, [tema])
 
   return (
     <>
-      <Header />
+      <Header tema={tema} aoAlterarTema={alterarTema} />
 
       <main className="container">
         <section className="manchete">
@@ -26,13 +39,13 @@ function App() {
             <NewsCard
             key={noticia.id}
             categoria={noticia.categoria}
-            titlo={noticia.titulo}
+            titulo={noticia.titulo}
             resumo={noticia.resumo}
           />
           ))}
         </section>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
