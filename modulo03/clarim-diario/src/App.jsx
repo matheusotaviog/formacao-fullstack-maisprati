@@ -7,13 +7,21 @@ import './App.css'
 
 function App() {
   const [tema, setTema] = useState(() => {
-    return localStorage.getItem('tema') || 'light'
+    const salvo = localStorage.getItem('tema') || 'light'
+    if (salvo) return salvo
+
+    const preferenciaEscuro = window.matchMedia('(prefers-color-scheme: dark)').matches
+    if (preferenciaEscuro) return 'dark'
+
+    return 'light'
   })
   const [manchete, ...demais] = noticias
 
   function alterarTema() {
     setTema(tema => (tema === 'light' ? 'dark' : 'light'))
   }
+
+
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', tema)
