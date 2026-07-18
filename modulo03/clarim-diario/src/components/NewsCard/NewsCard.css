@@ -1,6 +1,6 @@
 
 .card {
-    background-color: #fff;
+    background-color: var(--papel);
     border: 1px solid var(--tinta);
 }
 
