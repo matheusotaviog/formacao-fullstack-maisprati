@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header/Header'
-import NewsCard from './components/NewsCard/NewsCard'
+import Home from './pages/Home/Home'
 import Footer from './components/Footer/Footer'
-import { noticias } from './data/noticias'
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   const [tema, setTema] = useState(() => {
@@ -15,7 +15,6 @@ function App() {
 
     return 'light'
   })
-  const [manchete, ...demais] = noticias
 
   function alterarTema() {
     setTema(tema => (tema === 'light' ? 'dark' : 'light'))
@@ -32,27 +31,10 @@ function App() {
     <>
       <Header tema={tema} aoAlterarTema={alterarTema} />
 
-      <main className="container">
-        <section className="manchete">
-          <NewsCard
-            key={manchete.id}
-            categoria={manchete.categoria}
-            titlo={manchete.titulo}
-            resumo={manchete.resumo}
-          />
-        </section>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
 
-        <section className="grade">
-          {demais.map((noticia) => (
-            <NewsCard
-            key={noticia.id}
-            categoria={noticia.categoria}
-            titulo={noticia.titulo}
-            resumo={noticia.resumo}
-          />
-          ))}
-        </section>
-      </main>
       {/* <Footer /> */}
     </>
   )
