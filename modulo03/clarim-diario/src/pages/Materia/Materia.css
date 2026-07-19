@@ -1,0 +1,18 @@
+.materia {
+    padding: 28px 16px 48px;
+}
+
+.materia__voltar {
+    display: inline-block;
+    font-family: var(--fonte-ui);
+    font-size: 13px;
+    color: var(--cinza-legenda);
+    text-decoration: none;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.materia__voltar:hover {
+    color: var(--urgente);
+}
+

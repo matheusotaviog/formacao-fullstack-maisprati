@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
+import Materia from './pages/Materia/Materia'
 import Footer from './components/Footer/Footer'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
@@ -33,6 +34,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/materia/:id" element={<Materia />} />
       </Routes>
 
       {/* <Footer /> */}
