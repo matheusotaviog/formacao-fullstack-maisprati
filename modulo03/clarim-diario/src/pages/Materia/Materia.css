@@ -3,7 +3,7 @@
 }
 
 .materia__voltar {
-    display: inline-block;
+    display: block;
     font-family: var(--fonte-ui);
     font-size: 13px;
     color: var(--cinza-legenda);
@@ -16,3 +16,34 @@
     color: var(--urgente);
 }
 
+.materia__categoria {
+    display: inline-block;
+    font-family: var(--fonte-ui);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--urgente);
+    border: 1px solid var(--urgente);
+    padding: 3px 10px;
+    margin-bottom: 12px;
+}
+
+.materia h1 {
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.materia__resumo {
+    font-size: 20px;
+    font-style: italic;
+    color: var(--cinza-legenda);
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--tinta);
+    padding-bottom: 20px;
+}
+
+.materia__texto p {
+    margin-bottom: 20px;
+}
