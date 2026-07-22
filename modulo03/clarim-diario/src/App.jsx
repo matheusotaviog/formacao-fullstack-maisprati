@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import RotaProtegida from './components/RotaProtegida'
 
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
 import Materia from './pages/Materia/Materia'
 import Cadastro from './pages/Cadastro/Cadastro'
+import Login from './pages/Login/Login'
+import Painel from './pages/Painel/Painel'
 import Footer from './components/Footer/Footer'
 
 import './App.css'
@@ -39,6 +42,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/materia/:id" element={<Materia />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/painel" element={
+          <RotaProtegida>
+            <Painel />
+          </RotaProtegida>
+        } />
       </Routes>
 
       {/* <Footer /> */}
